@@ -1,34 +1,21 @@
 package com.alibaba.bean;
 
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
+import lombok.Data;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-
-/**
- * Created by ml on 2018/11/4.
- */
 @Component
-public class User implements InitializingBean,DisposableBean {
+@Data
+public class User implements ApplicationContextAware{
+	private String name;
+	private int age;
 
-    public void destroy() throws Exception {
-        System.out.println("user---destroy");
-    }
+	private ApplicationContext applicationContext;
 
-    public void afterPropertiesSet() throws Exception {
-        System.out.println("user---afterPropertiesSet");
-    }
-
-
-    @PostConstruct
-    public void init(){
-        System.out.println("user-----init");
-    }
-
-    @PreDestroy
-    public void destroys(){
-        System.out.println("user-----destroys");
-    }
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		this.applicationContext = applicationContext;
+	}
 }
