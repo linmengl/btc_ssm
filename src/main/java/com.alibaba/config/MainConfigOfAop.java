@@ -1,5 +1,6 @@
 package com.alibaba.config;
 
+import com.alibaba.bean.aop.AspectJTest;
 import com.alibaba.bean.aop.TestAop;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,5 +13,10 @@ public class MainConfigOfAop {
 	@Bean
 	public TestAop testAop(){
 		return new TestAop();
+	}
+
+	@Bean
+	public AspectJTest aspectJTest(){
+		return new AspectJTest();
 	}
 }

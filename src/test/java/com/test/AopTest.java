@@ -9,7 +9,7 @@ public class AopTest {
 	@Test
 	public void aopTest(){
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainConfigOfAop.class);
-		TestAop testAop = (TestAop) context.getBean("testAop");
-		testAop.test();
+		TestAop testAop = context.getBean(TestAop.class);
+		testAop.testAop();
 	}
 }

@@ -2,30 +2,31 @@ package com.alibaba.bean.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.stereotype.Component;
+import org.aspectj.lang.annotation.*;
 
-@Component
 @Aspect
 public class AspectJTest {
 
-	@Pointcut("execution(* *.test(..))")
-	public void test(){}
+	@Pointcut("execution(* com.alibaba.bean.aop.TestAop.testAop(..))")
+//	@Pointcut("execution(public int com.alibaba.bean.aop.TestAop.testAop(..))")
+	public void pointCut(){}
 
-	@Before("test()")
-	public void beforeTest(){
-		System.out.println("beforeTest……方法执行………………");
+	@Before("pointCut()")
+	public void beforeTest(JoinPoint joinPoint){
+		System.out.println("beforeTest……{"+joinPoint.getSignature().getName()+"}方法执行………………");
 	}
-	@After(value = "test()")
+
+	@After(value = "pointCut()")
 	public void afterTest(){
 		System.out.println("afterTest……方法执行………………");
 	}
 
-	@Around("test()")
+	@AfterReturning(value = "pointCut()",returning = "result")
+	public void afterReturningTest(JoinPoint joinPoint,Object result){
+		System.out.println(joinPoint.getSignature().getName()+"--afterReturningTest……方法执行………………,返回值为{"+result+"}");
+	}
+
+	@Around("pointCut()")
 	public void aroundTest(ProceedingJoinPoint joinPoint){
 		System.out.println("aroundTest……方法执行前………………");
 		try {
