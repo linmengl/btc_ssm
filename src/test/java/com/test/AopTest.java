@@ -10,6 +10,7 @@ public class AopTest {
 	public void aopTest(){
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainConfigOfAop.class);
 		TestAop testAop = context.getBean(TestAop.class);
-		testAop.testAop();
+		int a = testAop.getIndex();
+		//System.out.println(a);
 	}
 }

@@ -41,8 +41,4 @@
 		<property name="basePackage" value="com.alibaba.dao"/>
 	</bean>
 	
-	
-	
-	
-	
 </beans>

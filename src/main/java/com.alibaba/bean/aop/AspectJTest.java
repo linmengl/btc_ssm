@@ -7,7 +7,7 @@ import org.aspectj.lang.annotation.*;
 @Aspect
 public class AspectJTest {
 
-	@Pointcut("execution(* com.alibaba.bean.aop.TestAop.testAop(..))")
+	@Pointcut("execution(* com.alibaba.bean.aop.TestAop.getIndex(..))")
 //	@Pointcut("execution(public int com.alibaba.bean.aop.TestAop.testAop(..))")
 	public void pointCut(){}
 
@@ -27,14 +27,16 @@ public class AspectJTest {
 	}
 
 	@Around("pointCut()")
-	public void aroundTest(ProceedingJoinPoint joinPoint){
+	public Object aroundTest(ProceedingJoinPoint joinPoint){
 		System.out.println("aroundTest……方法执行前………………");
+		Object res = null;
 		try {
-			joinPoint.proceed();
+			res = joinPoint.proceed();
 		} catch (Throwable throwable) {
 			throwable.printStackTrace();
 		}
 		System.out.println("aroundTest……方法执行后………………");
+		return res;
 	}
 
 }
