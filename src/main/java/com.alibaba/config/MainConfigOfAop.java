@@ -1,7 +1,7 @@
 package com.alibaba.config;
 
 import com.alibaba.bean.aop.AspectJTest;
-import com.alibaba.bean.aop.TestAop;
+import com.alibaba.bean.aop.MathCalculate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -11,12 +11,12 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 public class MainConfigOfAop {
 
 	@Bean
-	public TestAop testAop(){
-		return new TestAop();
+	public MathCalculate mathCalculate() {
+		return new MathCalculate();
 	}
 
 	@Bean
-	public AspectJTest aspectJTest(){
+	public AspectJTest aspectJTest() {
 		return new AspectJTest();
 	}
 }
